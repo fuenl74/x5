@@ -5,7 +5,7 @@
 
 String title=  "ELASTIC COLLISIONS";
 String news=   "Use 'r' key to reset.";
-String author=  "Your Name";
+String author=  "Luis Fuentes";
 
 
 float left, right, top, bottom;
@@ -65,6 +65,12 @@ void table( float left, float top, float right, float bottom ) {
 void bounce() {
   redX += redDX;  if ( redX<left || redX>right ) redDX *= -1;
   redY += redDY;  if ( redY<top || redY>bottom ) redDY *=  -1;
+  bluX += bluDX;  if ( bluX<left || bluX>right ) bluDX *= -1;
+  bluY += bluDY;  if ( bluY<top || bluY>bottom ) bluDY *=  -1;
+  yelX += yelDX;  if ( yelX<left || yelX>right ) yelDX *= -1;
+  yelY += yelDY;  if ( yelY<top || yelY>bottom ) yelDY *=  -1;
+  
+  
 }
 void collisions() {
   float tmp;
@@ -73,7 +79,16 @@ void collisions() {
     tmp=yelDX;  yelDX=redDX;  redDX=tmp;
     tmp=yelDY;  yelDY=redDY;  redDY=tmp;
   }
-}
+  if ( dist( redX,redY, bluX,bluY ) < 30 ) {
+    tmp=bluDX;  bluDX=redDX;  redDX=tmp;
+    tmp=bluDY;  bluDY=redDY;  redDY=tmp;
+  }
+  if ( dist( bluX,bluY, yelX,yelY ) < 30 ) {
+    tmp=yelDX;  yelDX=bluDX;  bluDX=tmp;
+    tmp=yelDY;  yelDY=bluDY;  bluDY=tmp;
+  }
+  
+  }
 
 //// SHOW:  balls, messages
 void show() {
